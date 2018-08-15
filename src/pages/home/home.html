@@ -1,24 +1,29 @@
 <ion-content padding>
-  <ion-card>
-    <img id='todoimg' src="img/todo.png"/>
+  <ion-card id='todoimg'>
+    <img  src="img/todo.png"/>
   </ion-card>
   <ion-grid>
-    <ion-row *ngFor="let data of todoarray">
+    <ion-row *ngFor="let item of taskarray">
       <ion-col >
         <ion-card>
-          <ion-card-header class={{card.header}}>
-            {{card.header}}
-          </ion-card-header>
+          <ion-card-header >
+              <ion-toolbar>
+                {{item['header']}}
+                <ion-buttons end>
+                    <button ion-button small (click)='moveTask(item)'><ion-icon name="walk"></ion-icon></button>
+                    <button ion-button small (click)='editTask(item)'><ion-icon name="create"></ion-icon></button>
+                    <button ion-button small (click)='deleteTask(item)'><ion-icon name="close"></ion-icon></button>
+                </ion-buttons> 
+              </ion-toolbar>          
+            </ion-card-header>
           <ion-card-content>
-            {{card.body}}
+            {{item['body']}}
           </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col offset-5>
-        <button ion-button color="danger" (click) = "createTask()" outline>Create</button>
-      </ion-col>
-    </ion-row>
+    <div text-center>
+      <button ion-button color="danger" (click) = "openModal()" outline>Create</button>
+    </div>
   </ion-grid>
 </ion-content>

@@ -1,0 +1,35 @@
+<!--
+  Generated template for the ModalTaskPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title *ngIf="this.aux">Create a new task</ion-title>
+    <ion-title *ngIf="!this.aux">Update</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)='close()'>Close</button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <form (ngSubmit)="logForm()">
+        <ion-item>
+          <ion-label>Tag</ion-label>
+          <ion-input  type="text" [(ngModel)]="tag" name="title"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Description</ion-label>
+          <ion-textarea type="text" [(ngModel)]="description" name="title2"></ion-textarea>
+        </ion-item>
+      </form>
+  <div text-center>
+      <button *ngIf="this.aux" ion-button color="danger" (click) = "create()" outline>OK</button>
+      <button *ngIf="!this.aux" ion-button (click) = "update(item)" outline>Update</button>
+  </div>
+</ion-content>

@@ -1,27 +1,29 @@
 import { Component,  } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
+import {TataskLogicProvider} from '../../providers/tatask-logic/tatask-logic';
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  providers: [TataskLogicProvider]
 })
 export class HomePage {
-  todoarray: any[];
-  card: any;
+  taskarray: any[];
 
-  constructor(public navCtrl: NavController) {
-    this.todoarray = [];
-    this.card = {
-      "header":"",
-      "body": "",
-    };
+  constructor(public myProvider: TataskLogicProvider, public navCtrl: NavController, public modalCtrl: ModalController) {
+    this.taskarray=[]
   }
-
-  createTask(){
-    this.card = {
-      "header":"University",
-      "body": "Study new words in German"
-    };
-    this.todoarray.push(this.card);
+  openModal() {
+    let modal = this.modalCtrl.create('ModalTaskPage', {'isNew': true, 'cardtag': '', 'carddes': ''});
+    modal.present();
+    this.taskarray = this.myProvider.getListTask();
+  }
+  deleteTask(item){
+    this.myProvider.removeTask(item);
+  }
+  editTask(item){
+    let modal = this.modalCtrl.create('ModalTaskPage', {'isNew': false, 'cardtag': item['header'], 'carddes': item['body'], 'card': item});
+    modal.present();
+    this.taskarray = this.myProvider.getListTask();
   }
 }
