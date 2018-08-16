@@ -17,12 +17,14 @@ export class TataskLogicProvider {
   constructor(public viewCtrl: ViewController) {
   }
   
-  createTask( tag, description){
+  createTask( tag, description, priority){
     card = {
       "header":tag,
-      "body": description
+      "body": description,
+      "color": priority
     };
     todoarray.push(card);
+    console.log(card);
     this.closeModal();  
   }
 
@@ -38,10 +40,11 @@ export class TataskLogicProvider {
     todoarray.splice(todoarray.indexOf(card), 1);
   }
 
-  editTask(card, newtag, newdescription){
+  editTask(card, newtag, newdescription, newpriority){
     const i = todoarray.indexOf(card);
     todoarray[i]['header']= newtag;
     todoarray[i]['body']= newdescription;
+    todoarray[i]['color']= newpriority;
     this.closeModal();  
   }
 }

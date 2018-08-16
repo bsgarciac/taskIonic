@@ -14,7 +14,7 @@ export class HomePage {
     this.taskarray=[]
   }
   openModal() {
-    let modal = this.modalCtrl.create('ModalTaskPage', {'isNew': true, 'cardtag': '', 'carddes': ''});
+    let modal = this.modalCtrl.create('ModalTaskPage', {'isNew': true, 'cardtag': '', 'carddes': '', 'cardpri': ''});
     modal.present();
     this.taskarray = this.myProvider.getListTask();
   }
@@ -22,7 +22,7 @@ export class HomePage {
     this.myProvider.removeTask(item);
   }
   editTask(item){
-    let modal = this.modalCtrl.create('ModalTaskPage', {'isNew': false, 'cardtag': item['header'], 'carddes': item['body'], 'card': item});
+    let modal = this.modalCtrl.create('ModalTaskPage', {'isNew': false, 'cardtag': item['header'], 'carddes': item['body'], 'cardpri': item['color'], 'card': item});
     modal.present();
     this.taskarray = this.myProvider.getListTask();
   }

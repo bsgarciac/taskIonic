@@ -27,7 +27,16 @@
           <ion-label>Description</ion-label>
           <ion-textarea type="text" [(ngModel)]="description" name="title2"></ion-textarea>
         </ion-item>
-      </form>
+        <ion-item>
+            <ion-label>Priority</ion-label>
+            <ion-range min="1" max="5" step="1" name="title3" snaps="true" color="danger" [(ngModel)]="priority"> 
+              <ion-icon range-left name="happy"></ion-icon>
+              <ion-icon range-right name="sad"></ion-icon>
+            </ion-range>
+        </ion-item>
+    </form>
+    
+    
   <div text-center>
       <button *ngIf="this.aux" ion-button color="danger" (click) = "create()" outline>OK</button>
       <button *ngIf="!this.aux" ion-button (click) = "update(item)" outline>Update</button>

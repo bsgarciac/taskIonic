@@ -6,8 +6,8 @@
     <ion-row *ngFor="let item of taskarray">
       <ion-col >
         <ion-card>
-          <ion-card-header >
-              <ion-toolbar>
+          <ion-card-header>
+              <ion-toolbar color='{{item.color}}' >
                 {{item['header']}}
                 <ion-buttons end>
                     <button ion-button small (click)='moveTask(item)'><ion-icon name="walk"></ion-icon></button>
