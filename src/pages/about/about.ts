@@ -22,12 +22,12 @@ export class AboutPage {
     this.myProvider.move(item,'doing','done');
   }
   editTask(item){
-    let modal = this.modalCtrl.create('ModalTaskPage', {'type': 'doing','isNew': false, 'cardtag': item['header'], 'carddes': item['body'], 'cardpri': item['color'], 'card': item});
+    let modal = this.modalCtrl.create('ModalTaskPage', {'type': 'doing','isNew': false, 'cardtag': item['header'], 'carddes': item['body'], 'cardpri': item['color'], 'card': item, 'hour': item['hour'],'date': item['date']});
     modal.present();
     this.doingarray = this.myProvider.getDoingTask();
   }
   deleteTask(item){
-    this.myProvider.removeTask(item, 'doing');
+    this.myProvider.removeTask(item, 'doing', true);
   }
 }
 

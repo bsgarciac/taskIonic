@@ -8,6 +8,14 @@
     <ion-row *ngFor="let item of doingarray">
       <ion-col >
         <ion-card>
+            <ion-row class='cardFooter'	>
+                <ion-col>
+                    {{item['date']}}
+                </ion-col>
+                <ion-col>
+                    {{item['hour']}}
+                </ion-col>
+              </ion-row>
           <ion-card-header>
               <ion-toolbar color='{{item.color}}' >
                 {{item['header']}}

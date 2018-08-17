@@ -7,6 +7,14 @@
     <ion-row *ngFor="let item of taskarray">
       <ion-col >
         <ion-card>
+            <ion-row class='cardFooter'>
+                <ion-col text-center>
+                    {{item['date']}}
+                </ion-col>
+                <ion-col text-center>
+                    {{item['hour']}}
+                </ion-col>
+              </ion-row>
           <ion-card-header>
               <ion-toolbar color='{{item.color}}' >
                 {{item['header']}}
@@ -20,6 +28,7 @@
           <ion-card-content>
             {{item['body']}}
           </ion-card-content>
+          
         </ion-card>
       </ion-col>
     </ion-row>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ViewController} from 'ionic-angular';
+import { ViewController,ToastController,AlertController} from 'ionic-angular';
 
 /*
   Generated class for the TataskLogicProvider provider.
@@ -16,14 +16,16 @@ var card={};
 export class TataskLogicProvider {
   
 
-  constructor(public viewCtrl: ViewController) {
+  constructor(public alertCtrl: AlertController, public viewCtrl: ViewController, public toastCtrl: ToastController) {
   }
   
-  createTask( tag, description, priority){
+  createTask( tag, description, priority, date, hour){
     card = {
       "header":tag,
       "body": description,
-      "color": priority
+      "color": priority,
+      "date": date,
+      "hour": hour
     };
     if(todoarray.length==0){
       todoarray.push(card);
@@ -81,7 +83,43 @@ export class TataskLogicProvider {
   closeModal(){
     this.viewCtrl.dismiss();
   }
+  showConfirm(card, kind) {
+    const confirm = this.alertCtrl.create({
+      title: 'Delete',
+      message: 'Do you want to remove this card?',
+      buttons: [
+        {
+          text: 'No',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            if(kind=='todo'){
+              todoarray.splice(todoarray.indexOf(card), 1);
+            }else if(kind=='doing'){
+              doingarray.splice(doingarray.indexOf(card), 1);  
+            }else{
+              donearray.splice(donearray.indexOf(card), 1);  
+            } 
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
 
+  showToast(message: string) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 2000,
+      position: 'top'
+    });
+
+    toast.present(toast);
+  }
   getListTask(){
     return todoarray;
   }
@@ -91,25 +129,31 @@ export class TataskLogicProvider {
   getDoneTask(){
     return donearray;
   }
-  removeTask(card, kind){
-    if(kind=='todo'){
-      todoarray.splice(todoarray.indexOf(card), 1);
-    }else if(kind=='doing'){
-      doingarray.splice(doingarray.indexOf(card), 1);  
+  removeTask(card, kind, key){
+    if(key){
+      this.showConfirm(card, kind);
     }else{
-      donearray.splice(donearray.indexOf(card), 1);  
-    }  
+      if(kind=='todo'){
+        todoarray.splice(todoarray.indexOf(card), 1);
+      }else if(kind=='doing'){
+        doingarray.splice(doingarray.indexOf(card), 1);  
+      }else{
+        donearray.splice(donearray.indexOf(card), 1);  
+      }   
+    } 
   }
 
-  editTask(card, newtag, newdescription, newpriority, kind){
-    this.removeTask(card, kind);
+  editTask(card, newtag, newdescription, newpriority, kind, newdate, newhour){
+    this.removeTask(card, kind, false);
     card = {
       "header":newtag,
       "body": newdescription,
-      "color": newpriority
+      "color": newpriority,
+      "date": newdate,
+      "hour": newhour
     };
     if(kind=='todo'){
-      this.createTask(newtag,newdescription,newpriority);
+      this.createTask(newtag,newdescription,newpriority, newdate, newhour);
     }else if(kind=='doing'){
       this.createDoingTask(card);
       this.closeModal();     
@@ -117,14 +161,17 @@ export class TataskLogicProvider {
       this.createDoneTask(card);
       this.closeModal(); 
     }
+    this.showToast('Task edited');
   }
   move(card, from, to){
     if(from=='todo' && to=='doing'){
-      this.removeTask(card, 'todo');
+      this.removeTask(card, 'todo', false);
       this.createDoingTask(card);
+      this.showToast('Task moved to Doing');
     }else if(from=='doing' && to=='done'){
-      this.removeTask(card, 'doing');
+      this.removeTask(card, 'doing', false);
       this.createDoneTask(card);
+      this.showToast('Task moved to Done');
     }
   }
 }

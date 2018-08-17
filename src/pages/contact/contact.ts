@@ -16,11 +16,11 @@ export class ContactPage {
     this.donearray = this.myProvider.getDoneTask();
   }
   editTask(item){
-    let modal = this.modalCtrl.create('ModalTaskPage', {'type': 'done','isNew': false, 'cardtag': item['header'], 'carddes': item['body'], 'cardpri': item['color'], 'card': item});
+    let modal = this.modalCtrl.create('ModalTaskPage', {'type': 'done','isNew': false, 'cardtag': item['header'], 'carddes': item['body'], 'cardpri': item['color'], 'card': item, 'hour': item['hour'],'date': item['date']});
     modal.present();
     this.donearray = this.myProvider.getDoneTask();
   }
   deleteTask(item){
-    this.myProvider.removeTask(item, 'done');
+    this.myProvider.removeTask(item, 'done', true);
   }
 }

@@ -25,7 +25,18 @@
         </ion-item>
         <ion-item>
           <ion-label>Description</ion-label>
-          <ion-textarea type="text" [(ngModel)]="description" name="title2"></ion-textarea>
+          <ion-textarea type="text"   [(ngModel)]="description" name="title2"></ion-textarea>
+        </ion-item>
+        <span *ngIf="isEmpty">
+          <ion-label style="color: red; margin-left: 16px;"> Description is required </ion-label>
+        </span>
+        <ion-item>
+          <ion-label>Date</ion-label>
+          <ion-datetime displayFormat="MMM DD YYYY" min="2018" max="2020" name="title4" [(ngModel)]="date"></ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-label>Hour</ion-label>
+          <ion-datetime displayFormat="h:mm A" name="title5" color='warning' minuteValues="0,15,30,45" pickerFormat="h mm A" [(ngModel)]="hour"></ion-datetime>
         </ion-item>
         <ion-item>
             <ion-label>Priority</ion-label>
@@ -35,8 +46,6 @@
             </ion-range>
         </ion-item>
     </form>
-    
-    
   <div text-center>
       <button *ngIf="this.aux" ion-button color="danger" (click) = "create()" outline>OK</button>
       <button *ngIf="!this.aux" ion-button (click) = "update(item)" outline>Update</button>
