@@ -1,11 +1,28 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      About
-    </ion-title>
-  </ion-navbar>
-</ion-header>
 
 <ion-content padding>
-
+  <ion-card id='doingimg'>
+    <img  src="img/todo.png"/>
+  </ion-card>
+  <div text-center *ngIf='doingarray.length==0'>You aren't doing anything right now. <br> Do something!</div>
+  <ion-grid>
+    <ion-row *ngFor="let item of doingarray">
+      <ion-col >
+        <ion-card>
+          <ion-card-header>
+              <ion-toolbar color='{{item.color}}' >
+                {{item['header']}}
+                <ion-buttons end>
+                    <button ion-button small (click)='moveTask(item)'><ion-icon name="thumbs-up"></ion-icon></button>
+                    <button ion-button small (click)='editTask(item)'><ion-icon name="create"></ion-icon></button>
+                    <button ion-button small (click)='deleteTask(item)'><ion-icon name="close"></ion-icon></button>
+                </ion-buttons> 
+              </ion-toolbar>          
+            </ion-card-header>
+          <ion-card-content>
+            {{item['body']}}
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

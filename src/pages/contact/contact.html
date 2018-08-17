@@ -1,17 +1,26 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Contact
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
-    </ion-item>
-  </ion-list>
+<ion-content padding>
+  <ion-card id='doneimg'>
+    <img  src="img/todo.png"/>
+  </ion-card>
+  <div text-center *ngIf='donearray.length==0'>Haven't finished any task yet?.</div>
+  <ion-grid>
+    <ion-row *ngFor="let item of donearray">
+      <ion-col >
+        <ion-card>
+          <ion-card-header>
+              <ion-toolbar color='{{item.color}}' >
+                {{item['header']}}
+                <ion-buttons end>
+                    <button ion-button small (click)='editTask(item)'><ion-icon name="create"></ion-icon></button>
+                    <button ion-button small (click)='deleteTask(item)'><ion-icon name="close"></ion-icon></button>
+                </ion-buttons> 
+              </ion-toolbar>          
+            </ion-card-header>
+          <ion-card-content>
+            {{item['body']}}
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

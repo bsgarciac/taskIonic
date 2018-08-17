@@ -13,17 +13,23 @@ export class HomePage {
   constructor(public myProvider: TataskLogicProvider, public navCtrl: NavController, public modalCtrl: ModalController) {
     this.taskarray=[]
   }
+  ionViewDidLoad() {
+    this.taskarray = this.myProvider.getListTask();
+  }
   openModal() {
-    let modal = this.modalCtrl.create('ModalTaskPage', {'isNew': true, 'cardtag': '', 'carddes': '', 'cardpri': ''});
+    let modal = this.modalCtrl.create('ModalTaskPage', {'isNew': true, 'cardtag': '', 'carddes': '', 'cardpri': 1});
     modal.present();
     this.taskarray = this.myProvider.getListTask();
   }
   deleteTask(item){
-    this.myProvider.removeTask(item);
+    this.myProvider.removeTask(item, 'todo');
   }
   editTask(item){
-    let modal = this.modalCtrl.create('ModalTaskPage', {'isNew': false, 'cardtag': item['header'], 'carddes': item['body'], 'cardpri': item['color'], 'card': item});
+    let modal = this.modalCtrl.create('ModalTaskPage', {'type': 'todo','isNew': false, 'cardtag': item['header'], 'carddes': item['body'], 'cardpri': item['color'], 'card': item});
     modal.present();
     this.taskarray = this.myProvider.getListTask();
+  }
+  moveTask(item){
+    this.myProvider.move(item,'todo','doing');
   }
 }

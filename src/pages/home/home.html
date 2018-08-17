@@ -2,6 +2,7 @@
   <ion-card id='todoimg'>
     <img  src="img/todo.png"/>
   </ion-card>
+  <div text-center *ngIf='taskarray.length==0'>You don't have remaining tasks. <br> Create one</div>
   <ion-grid>
     <ion-row *ngFor="let item of taskarray">
       <ion-col >

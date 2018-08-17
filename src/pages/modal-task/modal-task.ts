@@ -20,16 +20,18 @@ export class ModalTaskPage {
   description: any;
   aux: any;
   priority: any;
+  type: any;
 
   constructor(public myProvider: TataskLogicProvider, public navParams: NavParams) {
     this.aux = this.navParams.get("isNew");
     this.tag = this.navParams.get("cardtag");
     this.description = this.navParams.get("carddes");
     this.priority = this.navParams.get('cardpri');
+    this.type = this.navParams.get('type')
   }
 
   ionViewDidLoad() {
-    console.log(this.description);
+    
   }
 
   create(){
@@ -41,6 +43,6 @@ export class ModalTaskPage {
   }
 
   update(){
-    this.myProvider.editTask(this.navParams.get("card"),this.tag,this.description,this.priority);
+    this.myProvider.editTask(this.navParams.get("card"),this.tag,this.description,this.priority,this.type);
   }
 }
