@@ -53,6 +53,12 @@ export class ModalTaskPage {
   }
 
   update(){
-    this.myProvider.editTask(this.navParams.get("card"),this.tag,this.description,this.priority,this.type, this.date, this.hour);
+    if(this.description==''){
+      this.isEmpty=true;
+    }else{
+      this.isEmpty=false;
+      this.myProvider.editTask(this.navParams.get("card"),this.tag,this.description,this.priority,this.type, this.date, this.hour);
+    }
+    
   }
 }
