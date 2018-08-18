@@ -19,13 +19,14 @@ export class TataskLogicProvider {
   constructor(public alertCtrl: AlertController, public viewCtrl: ViewController, public toastCtrl: ToastController) {
   }
   
-  createTask( tag, description, priority, date, hour){
+  createTask( tag, description, priority, date, hour, icon){
     card = {
       "header":tag,
       "body": description,
       "color": priority,
       "date": date,
-      "hour": hour
+      "hour": hour,
+      'icon': icon
     };
     if(todoarray.length==0){
       todoarray.push(card);
@@ -143,17 +144,18 @@ export class TataskLogicProvider {
     } 
   }
 
-  editTask(card, newtag, newdescription, newpriority, kind, newdate, newhour){
+  editTask(card, newtag, newdescription, newpriority, kind, newdate, newhour, newicon){
     this.removeTask(card, kind, false);
     card = {
       "header":newtag,
       "body": newdescription,
       "color": newpriority,
       "date": newdate,
-      "hour": newhour
+      "hour": newhour,
+      'icon': newicon
     };
     if(kind=='todo'){
-      this.createTask(newtag,newdescription,newpriority, newdate, newhour);
+      this.createTask(newtag,newdescription,newpriority, newdate, newhour, newicon);
     }else if(kind=='doing'){
       this.createDoingTask(card);
       this.closeModal();     

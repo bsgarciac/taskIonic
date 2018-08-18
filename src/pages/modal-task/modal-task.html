@@ -45,6 +45,12 @@
               <ion-icon range-right name="sad"></ion-icon>
           </ion-range>
         </ion-item>
+          <p align="center"><img src="{{ myphoto }}"></p>
+          <div text-center>
+            <button ion-button (click)="getImage()"  color="secondary">Add image</button>
+          </div>
+          <ion-item>
+        </ion-item>
     </form>
   <div text-center id='okbutton'>
       <button *ngIf="this.aux" ion-button color="danger" (click) = "create()" outline>OK</button>

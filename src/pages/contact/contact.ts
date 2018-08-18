@@ -16,7 +16,7 @@ export class ContactPage {
     this.donearray = this.myProvider.getDoneTask();
   }
   editTask(item){
-    let modal = this.modalCtrl.create('ModalTaskPage', {'type': 'done','isNew': false, 'cardtag': item['header'], 'carddes': item['body'], 'cardpri': item['color'], 'card': item, 'hour': item['hour'],'date': item['date']});
+    let modal = this.modalCtrl.create('ModalTaskPage', {'type': 'done','isNew': false, 'cardtag': item['header'], 'carddes': item['body'], 'cardpri': item['color'], 'card': item, 'hour': item['hour'],'date': item['date'], 'icon': item['icon']});
     modal.present();
     this.donearray = this.myProvider.getDoneTask();
   }
