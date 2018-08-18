@@ -2,7 +2,7 @@
 <ion-content padding>
   <div class="main-content" (swipe)="swipe($event)">
     <ion-card id='doingimg'>
-      <img  src="img/todo.png"/>
+      <img  src="img/done.png"/>
     </ion-card>
     <div text-center *ngIf='doingarray.length==0'>You aren't doing anything right now. <br> Do something!</div>
     <ion-grid>
@@ -27,10 +27,17 @@
                   </ion-buttons> 
                 </ion-toolbar>          
               </ion-card-header>
-            <ion-card-content>
-              {{item['body']}}
-              <img *ngIf='item.icon != undefined' src="{{item.icon}}"/>
-            </ion-card-content>
+              <ion-card-content (click)="showInfo(item)">
+                  <ion-item *ngIf='item.icon != undefined' >
+                      <p color='dark'> {{item['body']}} </p>
+                      <ion-thumbnail item-end>
+                          <img src="{{item.icon}}"/>
+                      </ion-thumbnail>
+                  </ion-item>
+                  <ion-item *ngIf='item.icon == undefined' >
+                    <p> {{item['body']}} </p>
+                  </ion-item>
+                </ion-card-content>
           </ion-card>
         </ion-col>
       </ion-row>

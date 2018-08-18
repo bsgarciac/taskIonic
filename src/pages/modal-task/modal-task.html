@@ -45,11 +45,12 @@
               <ion-icon range-right name="sad"></ion-icon>
           </ion-range>
         </ion-item>
+        <ion-item>
           <p align="center"><img src="{{ myphoto }}"></p>
-          <div text-center>
-            <button ion-button (click)="getImage()"  color="secondary">Add image</button>
+          <div text-center>   
+            <button ion-button clear (click)="getImage()"  color="dark">Add image</button>
           </div>
-          <ion-item>
+          
         </ion-item>
     </form>
   <div text-center id='okbutton'>

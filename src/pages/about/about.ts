@@ -37,6 +37,11 @@ export class AboutPage {
       this.navCtrl.parent.select(0);
     }
   }
+  showInfo(item){
+    let modal = this.modalCtrl.create('ModalInfoPage', {'item': item});
+    modal.present();
+    console.log(item);
+  }
 }
 
 

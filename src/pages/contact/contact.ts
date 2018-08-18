@@ -28,4 +28,9 @@ export class ContactPage {
       this.navCtrl.parent.select(1);
     }
   }
+  showInfo(item){
+    let modal = this.modalCtrl.create('ModalInfoPage', {'item': item});
+    modal.present();
+    console.log(item);
+  }
 }

@@ -1,0 +1,40 @@
+<!--
+  Generated template for the ModalInfoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color='{{item.color}}'>
+    <ion-title *ngIf='item.header!="" ' text-center  >{{item.header}}</ion-title>
+    <ion-title *ngIf='item.header=="" ' text-center  >Task</ion-title>
+    <ion-buttons end>
+        <button ion-button (click)='close()'>Close</button>
+      </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <p align="center"><img src="{{ item.icon }}"></p>
+    <div text-center>
+      <h5>Description:</h5>     
+      <p>{{item.body}}</p>
+    </div>
+    <div text-center *ngIf='item.date!=undefined || item.hour!=undefined'>
+      <h5 >Deadline:</h5>
+      
+      <p>{{item.date}} at {{item.hour}}</p>
+    </div> 
+    <div text-center>
+      <h5>Priority:</h5>
+      <p *ngIf='item.color==1'>Very low</p>
+      <p *ngIf='item.color==2'>Low</p>
+      <p *ngIf='item.color==3'>Regular</p>
+      <p *ngIf='item.color==4'>High</p>
+      <p *ngIf='item.color==5'>Very high</p>
+    </div>
+    <div text-center>
+      <i>{{remaining}} days remaining.</i>
+    </div>
+</ion-content>

@@ -7,7 +7,7 @@
     <ion-grid>
       <ion-row *ngFor="let item of taskarray">
         <ion-col >
-          <ion-card>
+          <ion-card >
               <ion-row class='cardFooter'>
                   <ion-col text-center>
                       {{item['date']}}
@@ -26,10 +26,17 @@
                   </ion-buttons> 
                 </ion-toolbar>          
               </ion-card-header>
-            <ion-card-content>
-              {{item['body']}}
-              <img *ngIf='item.icon != undefined' src="{{item.icon}}"/>
-            </ion-card-content>
+            <ion-card-content (click)="showInfo(item)">
+                <ion-item *ngIf='item.icon != undefined' >
+                    <p color='dark'> {{item['body']}} </p>
+                    <ion-thumbnail item-end>
+                        <img src="{{item.icon}}"/>
+                    </ion-thumbnail>
+                </ion-item>
+                <ion-item *ngIf='item.icon == undefined' >
+                  <p> {{item['body']}} </p>
+                </ion-item>
+              </ion-card-content>
 
           </ion-card>
         </ion-col>
