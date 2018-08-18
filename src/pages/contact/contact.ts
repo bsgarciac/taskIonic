@@ -23,4 +23,9 @@ export class ContactPage {
   deleteTask(item){
     this.myProvider.removeTask(item, 'done', true);
   }
+  swipe(event) {
+    if(event.direction === 4) {
+      this.navCtrl.parent.select(1);
+    }
+  }
 }

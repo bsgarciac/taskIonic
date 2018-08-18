@@ -1,35 +1,37 @@
 <ion-content padding>
-  <ion-card id='doneimg'>
-    <img  src="img/todo.png"/>
-  </ion-card>
-  <div text-center *ngIf='donearray.length==0'>Haven't finished any task yet?.</div>
-  <ion-grid>
-    <ion-row *ngFor="let item of donearray">
-      <ion-col >
-        <ion-card>
-            <ion-row class='cardFooter'>
-                <ion-col>
-                    {{item['date']}}
-                </ion-col>
-                <ion-col>
-                    {{item['hour']}}
-                </ion-col>
-              </ion-row>
-          <ion-card-header>
-              <ion-toolbar color='{{item.color}}' >
-                {{item['header']}}
-                <ion-buttons end>
-                    <button ion-button small (click)='editTask(item)'><ion-icon name="create"></ion-icon></button>
-                    <button ion-button small (click)='deleteTask(item)'><ion-icon name="close"></ion-icon></button>
-                </ion-buttons> 
-              </ion-toolbar>          
-            </ion-card-header>
-          <ion-card-content>
-            {{item['body']}}
-            <img width="100" height="100" src="{{item.icon}}"/>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <div class="main-content" (swipe)="swipe($event)">
+    <ion-card id='doneimg'>
+      <img  src="img/todo.png"/>
+    </ion-card>
+    <div text-center *ngIf='donearray.length==0'>Haven't finished any task yet?.</div>
+    <ion-grid>
+      <ion-row *ngFor="let item of donearray">
+        <ion-col >
+          <ion-card>
+              <ion-row class='cardFooter'>
+                  <ion-col text-center>
+                      {{item['date']}}
+                  </ion-col>
+                  <ion-col text-center>
+                      {{item['hour']}}
+                  </ion-col>
+                </ion-row>
+            <ion-card-header>
+                <ion-toolbar color='{{item.color}}' >
+                  <i>{{item['header']}}</i>
+                  <ion-buttons end>
+                      <button ion-button small (click)='editTask(item)'><ion-icon name="create" color="dark"></ion-icon></button>
+                      <button ion-button small (click)='deleteTask(item)'><ion-icon name="close" color="dark"></ion-icon></button>
+                  </ion-buttons> 
+                </ion-toolbar>          
+              </ion-card-header>
+            <ion-card-content>
+              {{item['body']}}
+              <img *ngIf='item.icon != undefined'  src="{{item.icon}}"/>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>

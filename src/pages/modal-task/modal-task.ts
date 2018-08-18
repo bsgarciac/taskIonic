@@ -47,7 +47,10 @@ export class ModalTaskPage {
       quality: 70,
       destinationType: this.camera.DestinationType.DATA_URL,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-      saveToPhotoAlbum:false
+      saveToPhotoAlbum:false,
+      allowEdit:true,
+      targetWidth:300,
+      targetHeight:300
     }
 
     this.camera.getPicture(options).then((imageData) => {

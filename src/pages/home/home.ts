@@ -15,6 +15,7 @@ export class HomePage {
   }
   ionViewDidLoad() {
     this.taskarray = this.myProvider.getListTask();
+    console.log(this.taskarray)
   }
   openModal() {
     let modal = this.modalCtrl.create('ModalTaskPage', {'isNew': true, 'cardtag': '', 'carddes': '', 'cardpri': 1, });
@@ -31,5 +32,10 @@ export class HomePage {
   }
   moveTask(item){
     this.myProvider.move(item,'todo','doing');
+  }
+  swipe(event) {
+    if(event.direction === 2) {
+      this.navCtrl.parent.select(1);
+    }
   }
 }

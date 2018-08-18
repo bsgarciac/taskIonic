@@ -29,6 +29,14 @@ export class AboutPage {
   deleteTask(item){
     this.myProvider.removeTask(item, 'doing', true);
   }
+  swipe(event) {
+    if(event.direction === 2) {
+      this.navCtrl.parent.select(2);
+    }
+    if(event.direction === 4) {
+      this.navCtrl.parent.select(0);
+    }
+  }
 }
 
 
