@@ -32,11 +32,11 @@
         </span>
         <ion-item>
           <ion-label>Date</ion-label>
-          <ion-datetime displayFormat="MMM DD YYYY" min="2018" max="2020" name="title4" [(ngModel)]="date"></ion-datetime>
+          <ion-datetime type="text" displayFormat="MMM DD YYYY" min="2018" max="2020" name="title4" [(ngModel)]="date"></ion-datetime>
         </ion-item>
         <ion-item>
           <ion-label>Hour</ion-label>
-          <ion-datetime displayFormat="h:mm A" name="title5" color='warning' minuteValues="0,15,30,45" pickerFormat="h mm A" [(ngModel)]="hour"></ion-datetime>
+          <ion-datetime displayFormat="h:mm A" name="title5" color='warning' minuteValues="0,5,10,15,20,25,30,35,40,45,50,55" pickerFormat="h mm A" [(ngModel)]="hour"></ion-datetime>
         </ion-item>
         <ion-item>
             <ion-label>Priority</ion-label>
@@ -46,7 +46,7 @@
           </ion-range>
         </ion-item>
         <ion-item>
-          <p align="center"><img src="{{ myphoto }}"></p>
+          <p *ngIf='myphoto != undefined' align="center"><img src="{{ myphoto }}"></p>
           <div text-center>   
             <button ion-button clear (click)="getImage()"  color="dark">Add image</button>
           </div>

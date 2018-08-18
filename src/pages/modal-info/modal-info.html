@@ -6,8 +6,8 @@
 -->
 <ion-header>
   <ion-navbar color='{{item.color}}'>
-    <ion-title *ngIf='item.header!="" ' text-center  >{{item.header}}</ion-title>
-    <ion-title *ngIf='item.header=="" ' text-center  >Task</ion-title>
+    <ion-title *ngIf='item.header!="" '   >{{item.header}}</ion-title>
+    <ion-title *ngIf='item.header=="" '   >Task</ion-title>
     <ion-buttons end>
         <button ion-button (click)='close()'>Close</button>
       </ion-buttons>
@@ -16,6 +16,9 @@
 
 
 <ion-content padding>
+    <div text-center text-center *ngIf='item.date!=undefined'>
+        <i>{{remaining}} days remaining.</i>
+      </div>
     <p align="center"><img src="{{ item.icon }}"></p>
     <div text-center>
       <h5>Description:</h5>     
@@ -28,13 +31,11 @@
     </div> 
     <div text-center>
       <h5>Priority:</h5>
-      <p *ngIf='item.color==1'>Very low</p>
-      <p *ngIf='item.color==2'>Low</p>
-      <p *ngIf='item.color==3'>Regular</p>
-      <p *ngIf='item.color==4'>High</p>
-      <p *ngIf='item.color==5'>Very high</p>
+      <p *ngIf='item.color==1'><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></p>
+      <p *ngIf='item.color==2'><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></p>
+      <p *ngIf='item.color==3'><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon><ion-icon name="star-outline"></ion-icon></p>
+      <p *ngIf='item.color==4'><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon></p>
+      <p *ngIf='item.color==5'><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></p>
     </div>
-    <div text-center>
-      <i>{{remaining}} days remaining.</i>
-    </div>
+    
 </ion-content>
