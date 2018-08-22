@@ -1,5 +1,5 @@
 <ion-tabs>
-  <ion-tab [root]="tab1Root" tabTitle="To Do " tabIcon="warning"></ion-tab>
-  <ion-tab [root]="tab2Root" tabTitle="Doing" tabIcon="walk"></ion-tab>
-  <ion-tab [root]="tab3Root" tabTitle="Done" tabIcon="thumbs-up"></ion-tab>
+  <ion-tab (ionChange)="transition($event)" [root]="tab1Root" tabTitle="To Do " tabIcon="warning"></ion-tab>
+  <ion-tab (ionChange)="transition($event)" [root]="tab2Root" tabTitle="Doing" tabIcon="walk"></ion-tab>
+  <ion-tab (ionChange)="transition($event)" [root]="tab3Root" tabTitle="Done" tabIcon="thumbs-up"></ion-tab>
 </ion-tabs>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ViewController,ToastController,AlertController} from 'ionic-angular';
-
+import { HTTP } from '@ionic-native/http';
 /*
   Generated class for the TataskLogicProvider provider.
 
@@ -11,14 +11,19 @@ var todoarray = [];
 var doingarray = [];
 var donearray = [];
 var card={};
-
+var token= '';
 @Injectable()
 export class TataskLogicProvider {
   
 
-  constructor(public alertCtrl: AlertController, public viewCtrl: ViewController, public toastCtrl: ToastController) {
+  constructor(private http: HTTP, public alertCtrl: AlertController, public viewCtrl: ViewController, public toastCtrl: ToastController) {
   }
-  
+  setToken(token){
+    token=token;
+  }
+  getToken(){
+    return token;
+  }
   createTask( tag, description, priority, date, hour, icon){
     card = {
       "header":tag,
@@ -120,6 +125,21 @@ export class TataskLogicProvider {
     });
 
     toast.present(toast);
+  }
+  initTasks(){
+    this.http.post('https://api.staging.taskgo.com.co/api/rest-auth/login/', 
+      { 
+        email : 'pruebataskgo1@yopmail.com',
+        password: 'abcd!234'
+      }, 
+      {
+        'Content-Type': 'application/json', 'Accept': 'application/json; version=ClientesV1' 
+      })
+      .then(data => {
+        
+      }).catch(error => {
+        
+      });
   }
   getListTask(){
     return todoarray;

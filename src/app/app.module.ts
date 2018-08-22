@@ -7,6 +7,7 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import {LoginPage} from '../pages/login/login'
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -15,6 +16,9 @@ import { TataskLogicProvider } from '../providers/tatask-logic/tatask-logic';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import { Camera } from '@ionic-native/camera';
+import { NativePageTransitions } from '@ionic-native/native-page-transitions';
+import { HTTP } from '@ionic-native/http';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +26,8 @@ import { Camera } from '@ionic-native/camera';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -34,7 +39,8 @@ import { Camera } from '@ionic-native/camera';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
@@ -44,7 +50,9 @@ import { Camera } from '@ionic-native/camera';
     FileTransfer,
     FileTransferObject,
     File,
-    Camera
+    Camera,
+    NativePageTransitions,
+    HTTP
   ]
 })
 export class AppModule {}
